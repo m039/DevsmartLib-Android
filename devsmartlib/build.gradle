@@ -4,7 +4,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:0.7.+'
+    classpath 'com.android.tools.build:gradle:0.9.+'
   }
 }
 
@@ -12,7 +12,7 @@ apply plugin: 'android-library'
 
 android {
   compileSdkVersion 19
-  buildToolsVersion "19.0.1"
+  buildToolsVersion "19.0.0"
 
   sourceSets {
     main {
@@ -28,18 +28,16 @@ android {
       assets.srcDirs = ['assets']
     }
 
-    instrumentTest.setRoot('tests')
+    androidTest.setRoot('tests')
   }
 
   lintOptions {
       abortOnError false
   }
 
-  defaultConfig {
-    renderscriptTargetApi = 17
-  }
+}
 
-  dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-  }
+dependencies {
+  compile fileTree(dir: 'libs', include: '*.jar', exclude: 'android-support-v4.jar')
+  compile "com.android.support:support-v4:13.0.0"
 }
